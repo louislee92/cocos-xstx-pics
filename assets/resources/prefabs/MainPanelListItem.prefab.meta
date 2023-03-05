@@ -1,0 +1,13 @@
+{
+  "ver": "1.1.43",
+  "importer": "prefab",
+  "imported": true,
+  "uuid": "92616d11-19bf-43a2-ae5a-d9b9d43bb415",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {},
+  "userData": {
+    "syncNodeName": "MainPanelListItem"
+  }
+}
