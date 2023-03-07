@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, resources, Prefab, instantiate, find, Label, Sprite, Color, NodeEventType} from 'cc';
+import { _decorator, Component, Node, resources, Prefab, instantiate, find, Label, Sprite, Color, NodeEventType, SpriteFrame} from 'cc';
 const { ccclass, property} = _decorator;
 import MainPanelConfig from './MainPanelConfig';
 
@@ -30,6 +30,7 @@ export class MainPanel extends Component {
         // let tipsNode = find("Tips", node);
         let tipsLabelNode = find("Tips/TipsLabel", node);
         let effectNode = find("Effect", node);
+        let spriteNode = find("Sprite", node);
 
         nameNode.getComponent(Label).string = conf.name;
         descNode.getComponent(Label).string = conf.desc;
@@ -38,6 +39,15 @@ export class MainPanel extends Component {
         if(conf.colorTextColor) colorTextNode.getComponent(Label).color = new Color().fromHEX(conf.colorTextColor);
         tipsLabelNode.getComponent(Label).string = conf.tips;
         effectNode.getComponent(Label).string = conf.effect;
+        // let imageSrc = ;
+        // 加载图片
+        resources.load("images/card/" + conf.id + "/spriteFrame", SpriteFrame, (err, sp) => {
+            if(err) {
+                console.error(err);
+                return;
+            }
+            spriteNode.getComponent(Sprite).spriteFrame = sp;
+        })
     }
 
     nodeItemOnClick(e, conf) {

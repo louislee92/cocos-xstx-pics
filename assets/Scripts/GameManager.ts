@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, Label } from 'cc';
 import { BlogPanel } from './BlogPanel';
 import { DetailPanel } from './DetailPanel';
 import { MainPanel } from './MainPanel';
@@ -26,6 +26,9 @@ export class GameManager extends Component {
     @property(ManuPanel)
     public menuPanel: ManuPanel;
 
+    @property(Label)
+    public topTitle: Label;
+
     start() {
         this.showMainPanel();
         GameManager.Instance = this;
@@ -38,6 +41,7 @@ export class GameManager extends Component {
         this.mainPanel.node.active = true;
         this.menuPanel.node.active = true;
         console.log("main panel")
+        this.topTitle.string = "图  鉴"
     }
 
     showBlogPanel() {
@@ -46,6 +50,7 @@ export class GameManager extends Component {
         this.blogPanel.node.active = true;
         this.menuPanel.node.active = true;
         console.log("blog panel")
+        this.topTitle.string = "资  讯"
     }
 
     showDetailPanel(conf) {
@@ -55,6 +60,7 @@ export class GameManager extends Component {
         this.detailPanel.node.active = true;
         console.log("detail panel")
         this.detailPanel.init(conf);
+        this.topTitle.string = conf.name;
     }
 
     
