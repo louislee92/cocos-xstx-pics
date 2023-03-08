@@ -35,16 +35,21 @@ export class BlogPanel extends Component {
     }
 
     onClick(e, title, text) {
-        // if( && wx.setClipboardData) {
-        //     // console.log('复制---微信小游戏--cc.sys.platform=', cc.sys.platform);
-        //     wx.setClipboardData({
-        //         data: text, //公众号id
-        //         success: function(res) {
-        //             console.log("success复制成功：" + text);
-        //             return true;
-        //         }
-        //     });
-        // }
+        if (sys.platform === sys.Platform.WECHAT_GAME) {
+            // console.log('复制---微信小游戏--cc.sys.platform=', cc.sys.platform);
+            wx.setClipboardData({
+                data: text, //公众号id
+                success: function(res) {
+                    console.log("success复制成功：" + text);
+                    return true;
+                    // wx.showToast({
+                    //     title: '复制成功',
+                    //    icon:"none",
+                    //    mask:"true"//是否设置点击蒙版，防止点击穿透
+                    //  })
+                }
+            });
+        }
         
         
         // // 
