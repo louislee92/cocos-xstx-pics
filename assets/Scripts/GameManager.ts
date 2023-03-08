@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Label } from 'cc';
+import { _decorator, Component, Node, Label, NodeEventType } from 'cc';
 import { BlogPanel } from './BlogPanel';
 import { DetailPanel } from './DetailPanel';
 import { MainPanel } from './MainPanel';
@@ -26,12 +26,18 @@ export class GameManager extends Component {
     @property(ManuPanel)
     public menuPanel: ManuPanel;
 
+    // 标题文本
     @property(Label)
     public topTitle: Label;
+
+    // 标题返回按钮
+    @property(Component)
+    public closeBtn: Component;
 
     start() {
         this.showMainPanel();
         GameManager.Instance = this;
+        this.closeBtn.node.on(NodeEventType.TOUCH_END, e => this.showMainPanel())
     }
 
 
@@ -41,7 +47,11 @@ export class GameManager extends Component {
         this.mainPanel.node.active = true;
         this.menuPanel.node.active = true;
         console.log("main panel")
+        // 设置标题
         this.topTitle.string = "图  鉴"
+        this.closeBtn.node.active = false;
+        // 设置菜单
+        this.menuPanel.select(0);
     }
 
     showBlogPanel() {
@@ -51,6 +61,8 @@ export class GameManager extends Component {
         this.menuPanel.node.active = true;
         console.log("blog panel")
         this.topTitle.string = "资  讯"
+        this.closeBtn.node.active = false;
+        this.menuPanel.select(1);
     }
 
     showDetailPanel(conf) {
@@ -61,6 +73,7 @@ export class GameManager extends Component {
         console.log("detail panel")
         this.detailPanel.init(conf);
         this.topTitle.string = conf.name;
+        this.closeBtn.node.active = true;
     }
 
     

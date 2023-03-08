@@ -1,4 +1,5 @@
 import { _decorator, Component, Node, resources, Prefab, instantiate, find, Label, Sprite, Color, NodeEventType, SpriteFrame} from 'cc';
+import { GameManager } from './GameManager';
 const { ccclass, property} = _decorator;
 import MainPanelConfig from './MainPanelConfig';
 
@@ -52,6 +53,9 @@ export class MainPanel extends Component {
 
     nodeItemOnClick(e, conf) {
         console.log(e, conf)
+        GameManager.Instance.showDetailPanel(conf);
+        // 设置详情信息
+        
     }
 
     update(deltaTime: number) {
